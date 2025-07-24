@@ -7,7 +7,7 @@ if (authToken !== 'authenticated_REDACTED') {
 // API base URL - Update this to your backend URL
 const API_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:8000/api'
-    : 'https://your-backend-api.com/api'; // TODO: Update with your actual backend URL
+    : 'http://54.216.67.205/api'; // AWS EC2 backend
 
 // State
 let apartments = [];
