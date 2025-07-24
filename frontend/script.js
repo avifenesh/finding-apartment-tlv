@@ -3,13 +3,13 @@ const authToken = localStorage.getItem('authToken');
 const authTime = localStorage.getItem('authTime');
 // Check if authenticated within last 24 hours
 if (!authToken || !authTime || (Date.now() - authTime > 86400000)) {
-    window.location.href = '/login.html';
+    window.location.href = './login.html';
 }
 
 // API base URL - Update this to your backend URL
 const API_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:8000/api'
-    : 'http://34.247.214.104/api'; // AWS EC2 backend
+    : 'http://34.247.214.104:8000/api'; // AWS EC2 backend
 
 // State
 let apartments = [];
@@ -283,5 +283,5 @@ function isNewListing(publishDate) {
 function logout() {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userEmail');
-    window.location.href = '/login.html';
+    window.location.href = './login.html';
 }

@@ -59,7 +59,7 @@
         const authTime = localStorage.getItem('authTime');
         // Check if authenticated within last 24 hours
         if (authToken && authTime && (Date.now() - authTime < 86400000)) {
-            window.location.href = '/index.html';
+            window.location.href = './index.html';
         }
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -78,8 +78,8 @@
             }
             
             // Validate credentials using hashes
-            const validEmail = 'b5d9c7e8f2a1d3b6c9e4f7a2d1c8b5e9f3a7d2c6';
-            const validPass = 'a7c3d1f9e2b5a8c4d7f1e3b6a9c2d5e8f1b4a7d0';
+            const validEmail = 'a35d1e5ea4d9496d5805b79c58fcacfe8a61d4de887ad089da4dea49c0f05afc';
+            const validPass = 'b7279add28b801ab8cf4f4dd06b81e0d80050da970fe92b4fcee203db00bc7d7';
             
             const emailHash = await sha256(email);
             const passHash = await sha256(password);
