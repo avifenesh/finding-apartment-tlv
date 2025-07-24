@@ -2,7 +2,7 @@
 const authToken = localStorage.getItem('authToken');
 const authTime = localStorage.getItem('authTime');
 // Check if authenticated within last 24 hours
-if (!authToken || !authTime || (Date.now() - authTime > 86400000)) {
+if (!authToken || !authTime || (Date.now() - parseInt(authTime) > 86400000)) {
     window.location.href = './login.html';
 }
 
@@ -282,6 +282,7 @@ function isNewListing(publishDate) {
 // Logout function
 function logout() {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('authTime');
     localStorage.removeItem('userEmail');
     window.location.href = './login.html';
 }
