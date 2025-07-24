@@ -7,7 +7,7 @@ class Apartment(Base):
     __tablename__ = "apartments"
 
     id = Column(Integer, primary_key=True, index=True)
-    yad2_id = Column(String, unique=True, index=True)
+    listing_id = Column(String, unique=True, index=True)  # Unique ID from source
     title = Column(String, nullable=False)
     price = Column(Integer, nullable=False)
     rooms = Column(Float, nullable=False)

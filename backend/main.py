@@ -7,12 +7,13 @@ from datetime import datetime, timedelta
 from typing import List, Optional
 import asyncio
 
-from . import models, schemas, database, scraper
+from . import models, schemas, database
+from .scraper_wrapper import run_scraper
 
 # Create database tables
 models.Base.metadata.create_all(bind=database.engine)
 
-app = FastAPI(title="Yad2 Apartment Scraper", version="1.0.0")
+app = FastAPI(title="Tel Aviv Apartment Finder", version="1.0.0")
 
 # Configure CORS
 app.add_middleware(
@@ -72,7 +73,7 @@ async def background_scrape(db: Session):
     global is_scraping
     is_scraping = True
     try:
-        await scraper.run_scraper(db)
+        await run_scraper(db)
     finally:
         is_scraping = False
 
