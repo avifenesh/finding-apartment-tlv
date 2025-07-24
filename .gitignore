@@ -68,6 +68,20 @@ package-lock.json
 # AWS
 .aws/
 deployment-info.txt
+yad2-finder-key.pem
+deploy-aws-*.sh
+user-data.sh
+
+# Documentation - sensitive
+*DEPLOYMENT*.md
+*IMPLEMENTATION*.md
+DEPLOY_*.md
+BETTER_*.md
+CLAUDE.md
+AWS_*.md
+SECURE_*.md
+*deployment*.md
+*implementation*.md
 
 # Docker
 .dockerignore
