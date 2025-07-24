@@ -1,6 +1,8 @@
 // Check authentication
 const authToken = localStorage.getItem('authToken');
-if (authToken !== 'authenticated_REDACTED') {
+const authTime = localStorage.getItem('authTime');
+// Check if authenticated within last 24 hours
+if (!authToken || !authTime || (Date.now() - authTime > 86400000)) {
     window.location.href = '/login.html';
 }
 
