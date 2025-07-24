@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import List, Optional
 
 class ApartmentBase(BaseModel):
-    yad2_id: str
+    listing_id: str
     title: str
     price: int
     rooms: float
