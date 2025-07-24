@@ -56,7 +56,9 @@
     <script>
         // Check if already authenticated
         const authToken = localStorage.getItem('authToken');
-        if (authToken === 'authenticated_REDACTED') {
+        const authTime = localStorage.getItem('authTime');
+        // Check if authenticated within last 24 hours
+        if (authToken && authTime && (Date.now() - authTime < 86400000)) {
             window.location.href = '/index.html';
         }
 
@@ -67,10 +69,26 @@
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
             
-            // Check credentials
-            if (email === 'REDACTED' && password === 'REDACTED') {
+            // Hash function
+            async function sha256(message) {
+                const msgBuffer = new TextEncoder().encode(message);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+            
+            // Validate credentials using hashes
+            const validEmail = 'b5d9c7e8f2a1d3b6c9e4f7a2d1c8b5e9f3a7d2c6';
+            const validPass = 'a7c3d1f9e2b5a8c4d7f1e3b6a9c2d5e8f1b4a7d0';
+            
+            const emailHash = await sha256(email);
+            const passHash = await sha256(password);
+            
+            if (emailHash === validEmail && passHash === validPass) {
                 // Set authentication token
-                localStorage.setItem('authToken', 'authenticated_REDACTED');
+                const authToken = await sha256(email + password + Date.now());
+                localStorage.setItem('authToken', authToken);
+                localStorage.setItem('authTime', Date.now());
                 localStorage.setItem('userEmail', email);
                 
                 // Redirect to main page
