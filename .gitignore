@@ -83,6 +83,19 @@ SECURE_*.md
 *deployment*.md
 *implementation*.md
 
+# Deployment files
+railway.json
+render.yaml
+fly.toml
+app.yaml
+vercel.json
+netlify.toml
+heroku.yml
+.platform/
+.elasticbeanstalk/
+.ebextensions/
+Dockerrun.aws.json
+
 # Docker
 .dockerignore
 docker-compose.override.yml
