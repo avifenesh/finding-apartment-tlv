@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: yad2-apartment-finder
+    runtime: docker
+    repo: https://github.com/avifenesh/finding-apartment-tlv.git
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: PYTHON_VERSION
+        value: 3.11
+    healthCheckPath: /health
+    disk:
+      name: data
+      mountPath: /app/data
+      sizeGB: 1

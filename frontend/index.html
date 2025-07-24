@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מציאת דירות בתל אביב</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-center mb-4">מציאת דירות להשכרה בתל אביב</h1>
+            <p class="text-center text-gray-600">3-4 חדרים עד 10,000 ₪ - מהשלושה ימים האחרונים</p>
+            <div class="text-center mt-2">
+                <button onclick="logout()" class="text-sm text-blue-600 hover:text-blue-800">יציאה</button>
+            </div>
+        </header>
+
+        <!-- Stats and Controls -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                <div class="text-center">
+                    <p class="text-sm text-gray-600">דירות פעילות</p>
+                    <p class="text-2xl font-bold" id="activeCount">0</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-sm text-gray-600">דירות חדשות ב-3 ימים</p>
+                    <p class="text-2xl font-bold" id="recentCount">0</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-sm text-gray-600">סריקה אחרונה</p>
+                    <p class="text-sm" id="lastScrape">-</p>
+                </div>
+                <div class="text-center">
+                    <button id="scrapeBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        הפעל סריקה
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">שכונה</label>
+                    <select id="neighborhoodFilter" class="w-full p-2 border border-gray-300 rounded-md">
+                        <option value="">כל השכונות</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">מחיר מקסימלי</label>
+                    <select id="priceFilter" class="w-full p-2 border border-gray-300 rounded-md">
+                        <option value="">עד 10,000 ₪</option>
+                        <option value="7000">עד 7,000 ₪</option>
+                        <option value="8000">עד 8,000 ₪</option>
+                        <option value="9000">עד 9,000 ₪</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">מספר חדרים</label>
+                    <select id="roomsFilter" class="w-full p-2 border border-gray-300 rounded-md">
+                        <option value="">3-4 חדרים</option>
+                        <option value="3">3 חדרים</option>
+                        <option value="3.5">3.5 חדרים</option>
+                        <option value="4">4 חדרים</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div id="loading" class="text-center py-8 hidden">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+            <p class="mt-2">טוען דירות...</p>
+        </div>
+
+        <!-- Apartments Grid -->
+        <div id="apartmentsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Apartments will be loaded here -->
+        </div>
+
+        <!-- No results message -->
+        <div id="noResults" class="text-center py-8 hidden">
+            <p class="text-gray-600">לא נמצאו דירות התואמות לחיפוש</p>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50">
+        <div class="flex items-center justify-center h-full p-4">
+            <div class="relative max-w-4xl max-h-full">
+                <img id="modalImage" src="" alt="תמונת דירה" class="max-w-full max-h-full">
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-2xl">&times;</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
