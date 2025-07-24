@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Hash</title>
+</head>
+<body>
+    <script>
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+        
+        async function test() {
+            const email = 'aviarchi1994@gmail.com';
+            const password = 'Af!@#$56789';
+            
+            const emailHash = await sha256(email);
+            const passHash = await sha256(password);
+            
+            console.log('Email:', email);
+            console.log('Email Hash:', emailHash);
+            console.log('Password:', password);
+            console.log('Password Hash:', passHash);
+            
+            document.body.innerHTML = `
+                <h2>Credentials Hash Test</h2>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Email Hash:</strong> ${emailHash}</p>
+                <p><strong>Password:</strong> ${password}</p>
+                <p><strong>Password Hash:</strong> ${passHash}</p>
+            `;
+        }
+        
+        test();
+    </script>
+</body>
+</html>
