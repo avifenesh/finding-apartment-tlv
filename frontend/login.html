@@ -58,11 +58,11 @@
         const authToken = localStorage.getItem('authToken');
         const authTime = localStorage.getItem('authTime');
         // Check if authenticated within last 24 hours
-        if (authToken && authTime && (Date.now() - authTime < 86400000)) {
+        if (authToken && authTime && (Date.now() - parseInt(authTime) < 86400000)) {
             window.location.href = './index.html';
         }
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const email = document.getElementById('email').value;
@@ -88,7 +88,7 @@
                 // Set authentication token
                 const authToken = await sha256(email + password + Date.now());
                 localStorage.setItem('authToken', authToken);
-                localStorage.setItem('authTime', Date.now());
+                localStorage.setItem('authTime', Date.now().toString());
                 localStorage.setItem('userEmail', email);
                 
                 // Redirect to main page
