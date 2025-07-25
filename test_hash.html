@@ -13,23 +13,24 @@
         }
         
         async function test() {
-            const email = 'aviarchi1994@gmail.com';
-            const password = 'Af!@#$56789';
+            const email = 'test@example.com';
+            const password = 'testPassword123';
             
             const emailHash = await sha256(email);
             const passHash = await sha256(password);
             
-            console.log('Email:', email);
-            console.log('Email Hash:', emailHash);
-            console.log('Password:', password);
-            console.log('Password Hash:', passHash);
+            console.log('Test Email:', email);
+            console.log('Test Email Hash:', emailHash);
+            console.log('Test Password:', password);
+            console.log('Test Password Hash:', passHash);
             
             document.body.innerHTML = `
-                <h2>Credentials Hash Test</h2>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Email Hash:</strong> ${emailHash}</p>
-                <p><strong>Password:</strong> ${password}</p>
-                <p><strong>Password Hash:</strong> ${passHash}</p>
+                <h2>Hash Test Tool</h2>
+                <p><em>This is a development tool for testing SHA-256 hash generation</em></p>
+                <p><strong>Test Email:</strong> ${email}</p>
+                <p><strong>Test Email Hash:</strong> ${emailHash}</p>
+                <p><strong>Test Password:</strong> ${password}</p>
+                <p><strong>Test Password Hash:</strong> ${passHash}</p>
             `;
         }
         
