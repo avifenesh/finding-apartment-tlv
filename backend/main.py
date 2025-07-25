@@ -10,7 +10,7 @@ import hashlib
 import secrets
 
 from . import models, schemas, database
-from .scraper_wrapper import run_scraper
+from .scraper import run_scraper
 
 # Create database tables
 models.Base.metadata.create_all(bind=database.engine)
