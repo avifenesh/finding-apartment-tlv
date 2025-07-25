@@ -6,6 +6,8 @@ A personal web application for apartment hunting in Tel Aviv.
 
 This repository contains a web application designed for personal use. The main application is accessible through the provided interface after authentication.
 
+**Login Page:** [frontend/login.html](frontend/login.html)
+
 ## Getting Started
 
 For those interested in forking or contributing to this project:
