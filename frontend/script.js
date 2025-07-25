@@ -283,6 +283,5 @@ function isNewListing(publishDate) {
 function logout() {
     localStorage.removeItem('authToken');
     localStorage.removeItem('authTime');
-    localStorage.removeItem('userEmail');
     window.location.href = './login.html';
 }
