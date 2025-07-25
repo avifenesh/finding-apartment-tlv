@@ -77,10 +77,8 @@
                 return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
             }
             
-            // Determine API URL based on environment
-            const API_URL = window.location.hostname === 'localhost' 
-                ? 'http://localhost:8000/api'
-                : 'http://34.247.214.104:8000/api';
+            // API URL
+            const API_URL = 'http://localhost:8000/api';
             
             try {
                 // Call login API

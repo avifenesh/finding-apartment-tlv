@@ -7,9 +7,7 @@ if (!authToken || !authTime || (Date.now() - parseInt(authTime) > 86400000)) {
 }
 
 // API base URL - Update this to your backend URL
-const API_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:8000/api'
-    : 'http://34.247.214.104:8000/api'; // AWS EC2 backend
+const API_URL = 'http://localhost:8000/api';
 
 // State
 let apartments = [];
