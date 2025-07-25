@@ -77,23 +77,38 @@
                 return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
             }
             
-            // Validate credentials using hashes
-            const validEmail = 'a35d1e5ea4d9496d5805b79c58fcacfe8a61d4de887ad089da4dea49c0f05afc';
-            const validPass = 'b7279add28b801ab8cf4f4dd06b81e0d80050da970fe92b4fcee203db00bc7d7';
+            // Determine API URL based on environment
+            const API_URL = window.location.hostname === 'localhost' 
+                ? 'http://localhost:8000/api'
+                : 'http://34.247.214.104:8000/api';
             
-            const emailHash = await sha256(email);
-            const passHash = await sha256(password);
-            
-            if (emailHash === validEmail && passHash === validPass) {
-                // Set authentication token
-                const authToken = await sha256(email + password + Date.now());
-                localStorage.setItem('authToken', authToken);
-                localStorage.setItem('authTime', Date.now().toString());
+            try {
+                // Call login API
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
                 
-                // Redirect to main page
-                window.location.href = './index.html';
-            } else {
-                errorMessage.textContent = 'אימייל או סיסמה שגויים';
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Set authentication data
+                    localStorage.setItem('authToken', result.auth_token);
+                    localStorage.setItem('authTime', Date.now().toString());
+                    localStorage.setItem('userEmail', email);
+                    
+                    // Redirect to main page
+                    window.location.href = './index.html';
+                } else {
+                    errorMessage.textContent = result.message || 'אימייל או סיסמה שגויים';
+                    errorMessage.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                errorMessage.textContent = 'שגיאה בהתחברות למערכת';
                 errorMessage.classList.remove('hidden');
             }
         });

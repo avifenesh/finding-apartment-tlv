@@ -16,6 +16,19 @@ let apartments = [];
 let neighborhoods = [];
 let isScrapingInProgress = false;
 
+// Get auth headers
+function getAuthHeaders() {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+        window.location.href = './login.html';
+        return {};
+    }
+    return {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+    };
+}
+
 // Initialize app
 document.addEventListener('DOMContentLoaded', async () => {
     await loadNeighborhoods();
@@ -40,7 +53,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Load neighborhoods
 async function loadNeighborhoods() {
     try {
-        const response = await fetch(`${API_URL}/neighborhoods`);
+        const response = await fetch(`${API_URL}/neighborhoods`, {
+            headers: getAuthHeaders()
+        });
         neighborhoods = await response.json();
         
         const select = document.getElementById('neighborhoodFilter');
@@ -58,7 +73,9 @@ async function loadNeighborhoods() {
 // Load statistics
 async function loadStats() {
     try {
-        const response = await fetch(`${API_URL}/stats`);
+        const response = await fetch(`${API_URL}/stats`, {
+            headers: getAuthHeaders()
+        });
         const stats = await response.json();
         
         document.getElementById('activeCount').textContent = stats.active_apartments;
@@ -100,7 +117,9 @@ async function loadApartments() {
             params.append('max_rooms', rooms);
         }
         
-        const response = await fetch(`${API_URL}/apartments?${params}`);
+        const response = await fetch(`${API_URL}/apartments?${params}`, {
+            headers: getAuthHeaders()
+        });
         apartments = await response.json();
         
         if (apartments.length === 0) {
@@ -203,7 +222,9 @@ async function triggerScrape() {
     const btn = document.getElementById('scrapeBtn');
     
     // Check if already scraping
-    const statusResponse = await fetch(`${API_URL}/scrape/status`);
+    const statusResponse = await fetch(`${API_URL}/scrape/status`, {
+        headers: getAuthHeaders()
+    });
     const status = await statusResponse.json();
     
     if (status.is_scraping) {
@@ -216,13 +237,18 @@ async function triggerScrape() {
     isScrapingInProgress = true;
     
     try {
-        const response = await fetch(`${API_URL}/scrape`, { method: 'POST' });
+        const response = await fetch(`${API_URL}/scrape`, { 
+            method: 'POST',
+            headers: getAuthHeaders()
+        });
         const result = await response.json();
         
         if (result.success) {
             // Check scraping status periodically
             const checkStatus = setInterval(async () => {
-                const statusResponse = await fetch(`${API_URL}/scrape/status`);
+                const statusResponse = await fetch(`${API_URL}/scrape/status`, {
+        headers: getAuthHeaders()
+    });
                 const status = await statusResponse.json();
                 
                 if (!status.is_scraping) {

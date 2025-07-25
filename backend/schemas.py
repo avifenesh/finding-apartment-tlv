@@ -44,3 +44,24 @@ class StatsResponse(BaseModel):
     active_apartments: int
     apartments_last_3_days: int
     last_scrape: Optional[datetime]
+
+
+class UserLogin(BaseModel):
+    email: str
+    password: str
+
+
+class UserResponse(BaseModel):
+    email: str
+    created_at: datetime
+    last_login: Optional[datetime]
+    is_active: bool
+    
+    class Config:
+        from_attributes = True
+
+
+class LoginResponse(BaseModel):
+    success: bool
+    message: str
+    auth_token: Optional[str] = None

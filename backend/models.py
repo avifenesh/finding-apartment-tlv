@@ -23,3 +23,15 @@ class Apartment(Base):
     created_at = Column(DateTime, default=func.now())
     last_seen = Column(DateTime, default=func.now(), onupdate=func.now())
     is_active = Column(Boolean, default=True)
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String, unique=True, index=True, nullable=False)
+    email_hash = Column(String, nullable=False)  # SHA-256 hash of email
+    password_hash = Column(String, nullable=False)  # SHA-256 hash of password
+    created_at = Column(DateTime, default=func.now())
+    last_login = Column(DateTime)
+    is_active = Column(Boolean, default=True)

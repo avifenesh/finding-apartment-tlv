@@ -1,153 +1,159 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# C extensions
 *.so
+
+# Distribution / packaging
 .Python
-venv/
-env/
-ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
 .venv
-*.pyc
-*.pyo
-*.pyd
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
 
 # Database
 *.db
-*.sqlite
-*.sqlite3
 apartments.db
-data/
+
+# Test files
+test*.py
+test*.html
+check_db.py
+populate_db.py
+mock-backend.py
+
+# Credentials and initialization scripts
+init_user.py
+CREDENTIALS_INFO.txt
+
+# AWS keys
+*.pem
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*.swn
-.project
-.pydevproject
+
+# MCP config
+.mcp.json
 
 # OS
 .DS_Store
 Thumbs.db
-*~
-
-# Logs
-*.log
-logs/
-*.out
-*.err
-
-# Playwright
-playwright-report/
-test-results/
-.cache/
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-.env.production
-
-# Security files
-SECURE_CREDENTIALS.md
-*credentials*
-*secrets*
-*.pem
-*.key
-.mcp.json
-
-# Dependencies
-node_modules/
-dist/
-build/
-.npm/
-package-lock.json
-
-# AWS
-.aws/
-deployment-info.txt
-yad2-finder-key.pem
-deploy-aws-*.sh
-user-data.sh
-
-# Documentation - sensitive
-*DEPLOYMENT*.md
-*IMPLEMENTATION*.md
-DEPLOY_*.md
-BETTER_*.md
-CLAUDE.md
-AWS_*.md
-SECURE_*.md
-*deployment*.md
-*implementation*.md
 
 # Deployment files
-railway.json
-render.yaml
-fly.toml
-app.yaml
-vercel.json
-netlify.toml
-heroku.yml
-.platform/
-.elasticbeanstalk/
-.ebextensions/
-Dockerrun.aws.json
+deployment-info.txt
+backend-updated.tar.gz
 
-# Docker
-.dockerignore
-docker-compose.override.yml
-
-# Temporary files
-*.tmp
-*.temp
-*.bak
-.backup/
-
-# Coverage
-htmlcov/
-.coverage
-.coverage.*
-coverage.xml
-*.cover
-
-# Testing
-.pytest_cache/
-.tox/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# MacOS
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Linux
-.directory
-
-# Virtual environments
-bin/
-include/
-lib/
-lib64/
-share/
-pyvenv.cfg
-
-# Production
-*.production
-production/
-
-# Misc
-*.swp
-*.bak
-*.orig
-*~
-.cache/
+# Node modules (if any)
+node_modules/
